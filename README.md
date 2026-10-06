@@ -284,10 +284,10 @@ Projeto desenvolvido pela equipe do TCC 2026.
 
 Davi Tavares Lima
 
-Guilherme Martins Mosca da Silva
-
 Guilherme Barroso da Silva
 
-Vitor Gabriel Ferreira Costa
+Guilherme Martins Mosca da Silva
 
 Matheus Albieri Forim
+
+Vitor Gabriel Ferreira Costa
