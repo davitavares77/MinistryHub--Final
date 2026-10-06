@@ -267,7 +267,7 @@ http://localhost:3000
 
 # 🎓 Projeto Acadêmico
 
-Projeto desenvolvido como Trabalho de Conclusão de Curso (TCC) aplicando conceitos de:
+Projeto desenvolvido como Trabalho de Conclusão de Curso (TCC) do 3º Ano A do  Colégio Técnico Bento Quirino, aplicando conceitos de:
 
 - Engenharia de Software
 - Banco de Dados
@@ -282,12 +282,12 @@ Projeto desenvolvido como Trabalho de Conclusão de Curso (TCC) aplicando concei
 
 Projeto desenvolvido pela equipe do TCC 2026.
 
-Davi Tavares
+Davi Tavares Lima
 
-Guilherme Martins
+Guilherme Martins Mosca da Silva
 
-Guilherme Barroso
+Guilherme Barroso da Silva
 
-Vitor Costa
+Vitor Gabriel Ferreira Costa
 
-Matheus Forim
+Matheus Albieri Forim
