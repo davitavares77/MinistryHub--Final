@@ -291,3 +291,75 @@ Guilherme Martins Mosca da Silva
 Matheus Albieri Forim
 
 Vitor Gabriel Ferreira Costa
+
+
+
+
+📄 Termos de Uso e Compartilhamento
+
+
+
+Autores: Davi Tavares Lima, Guilherme Barroso da Silva, Guilherme Mosca Martins da Silva, Matheus Albieri Forim, Vitor Gabriel Ferreira Costa
+
+Orientador: Mateus Redivo
+
+Projeto: MinistryHub, TCC Técnico em Informática, Colégio Técnico Bento Quirino, 2026
+
+
+
+©️ 2026 Davi Tavares Lima, Guilherme Barroso da Silva, Guilherme Mosca Martins da Silva, Matheus Albieri Forim e Vitor Gabriel Ferreira Costa. Todos os direitos reservados, exceto o que está expressamente permitido abaixo.
+
+
+
+Permitido
+
+
+
+* Consultar e estudar o código para fins educacionais.
+
+* Uso para avaliação do TCC e apresentação acadêmica.
+
+* Uso não comercial por terceiros, desde que respeitadas as condições de crédito abaixo.
+
+
+
+Condições
+
+
+
+1. Crédito obrigatório: qualquer uso, cópia, adaptação ou divulgação deve citar os autores pelo nome e incluir link para este repositório.
+
+2. Sem fins lucrativos: é proibido usar, vender, licenciar ou oferecer este código (ou derivados) como produto ou serviço comercial sem contratar os autores previamente.
+
+3. Uso institucional: o uso pela instituição de ensino além da avaliação do TCC (outros projetos, sistemas internos, divulgação) depende de autorização prévia e por escrito dos autores.
+
+4. Derivados: trabalhos derivados devem manter este aviso e indicar o que foi alterado.
+
+
+
+Contato
+
+
+
+Para solicitar autorização ou contratar os autores:
+
+
+
+* Davi Tavares Lima: https://www.linkedin.com/in/davi-tavares-671a91319
+
+* Guilherme Barroso da Silva: https://www.linkedin.com/in/guilherme-barroso-da-silva-488227346
+
+* Guilherme Mosca Martins da Silva: https://www.linkedin.com/in/guilherme-mosca10
+
+* Matheus Albieri Forim: https://www.linkedin.com/in/matheus-forim-ab3aa8441
+
+* Vitor Gabriel Ferreira Costa: https://www.linkedin.com/in/vitor-costa-999035329
+
+
+
+Isenção de garantia
+
+
+
+O software é fornecido “como está”, sem garantias de qualquer tipo. 
+
