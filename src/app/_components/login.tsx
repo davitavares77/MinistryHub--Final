@@ -12,6 +12,8 @@ import { useRouter } from "next/navigation";
 import "./login.css"
 import imagemMinistry from "../../components/ui/IMG_6960-removebg-preview.png"
 import Link from "next/link";
+import Spinner from "./spinner";
+
 type FormData = {
     nome: string;
     email: string;
@@ -21,11 +23,14 @@ type FormData = {
 export default function Login() {
     const router = useRouter();
     const [loginError, setLoginError] = useState<string | null>(null);
+    const [entrando, setEntrando] = useState(false);
     const {register, handleSubmit, formState: {errors}} = useForm<SignInSchema>({resolver: zodResolver(signInSchema),
 
     });
+
 async function onSubmit(data: SignInSchema) {
   setLoginError(null);
+  setEntrando(true);
 
   const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
     email: data.email,
@@ -41,6 +46,7 @@ async function onSubmit(data: SignInSchema) {
       setLoginError("Erro ao fazer login. Tente novamente.");
     }
     console.error(authError);
+    setEntrando(false);
     return;
   }
 
@@ -50,6 +56,9 @@ async function onSubmit(data: SignInSchema) {
     .select("cargo")
     .eq("email", data.email)
     .single();
+
+  // não desliga o "entrando" aqui de propósito — a tela vai trocar
+  // (window.location.href) então o spinner continua até a troca acontecer
 
   if (usuario?.cargo === "admin") {
     window.location.href = "/configurar";
@@ -71,7 +80,7 @@ async function onSubmit(data: SignInSchema) {
         
             
                 <h2>Email</h2>
-            <Input className="input" placeholder="you@example.com" type="email" {...register("email")}/>
+            <Input className="input" placeholder="you@example.com" type="email" {...register("email")} disabled={entrando}/>
         
                     {errors?.email && (
                 <div className="text-red-500 text-xs">
@@ -79,7 +88,7 @@ async function onSubmit(data: SignInSchema) {
                 </div>
                     )}
             <h2>Senha</h2>
-            <Input className="input" placeholder="••••••••" type="password" {...register("password")} />
+            <Input className="input" placeholder="••••••••" type="password" {...register("password")} disabled={entrando} />
         
                     {errors?.password && (
                 <div className="text-red-500 text-xs">
@@ -90,7 +99,9 @@ async function onSubmit(data: SignInSchema) {
                 {loginError && (
                 <div className="text-red-500 text-xs">{loginError}</div>
                 )}
-        <Button>Logar</Button>
+        <Button disabled={entrando}>
+          {entrando ? (<><Spinner /> Entrando...</>) : "Logar"}
+        </Button>
             <div className="final">
                 <span>ou</span>
                 <h3>Novo no MinistryHub? <a href="/cadastro">Crie sua conta</a></h3>

@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import imagemMinistry from "../../components/ui/IMG_6960-removebg-preview.png";
 import styles from "./sidebar.module.css";
 
 export default function Sidebar() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [saindo, setSaindo] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -30,6 +31,12 @@ export default function Sidebar() {
     return pathname === caminho || pathname?.startsWith(caminho + "/");
   }
 
+  async function sair() {
+    setSaindo(true);
+    await supabase.auth.signOut();
+    window.location.href = "/login";
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.logoministry}>
@@ -38,23 +45,26 @@ export default function Sidebar() {
 
       <div className={styles.secao}>
         <span className={styles.secaoTitulo}>Geral</span>
-        <a href="/inicio" className={ativo("/inicio") ? styles.ativo : ""}>Escala</a>
+        <a href="/inicio" className={ativo("/inicio") ? styles.ativo : ""}>Início</a>
         <a href="/disponibilidade" className={ativo("/disponibilidade") ? styles.ativo : ""}>Disponível</a>
       </div>
 
       {isAdmin && (
         <div className={styles.secao}>
           <span className={styles.secaoTitulo}>Administração</span>
+          <a href="/cultos" className={ativo("/cultos") ? styles.ativo : ""}>Cultos</a>
+          <a href="/gerar-escala" className={ativo("/gerar-escala") ? styles.ativo : ""}>Escala</a>
           <a href="/ministerios" className={ativo("/ministerios") ? styles.ativo : ""}>Ministério</a>
           <a href="/modelos-culto" className={ativo("/modelos-culto") ? styles.ativo : ""}>Modelos</a>
-          <a href="/atribuir-ministerio" className={ativo("/atribuir-ministerio") ? styles.ativo : ""}>Atribuir</a>
-          <a href="/cultos" className={ativo("/cultos") ? styles.ativo : ""}>Cultos</a>
           <a href="/vagas-culto" className={ativo("/vagas-culto") ? styles.ativo : ""}>Vagas</a>
-          <a href="/gerar-escala" className={ativo("/gerar-escala") ? styles.ativo : ""}>Escala</a>
-          <a href="/configurar" className={ativo("/configurar-escala") ? styles.ativo : ""}>Assistente</a>
-          <a href="/funcoes" className={ativo("/funcoes") ? styles.ativo : ""}>Funções</a>
+          <a href="/atribuir-ministerio" className={ativo("/atribuir-ministerio") ? styles.ativo : ""}>Atribuir</a>
+          <a href="/configurar" className={ativo("/configurar") ? styles.ativo : ""}>Assistente</a>
         </div>
       )}
+
+      <button className={styles.botaoSair} onClick={sair} disabled={saindo}>
+        {saindo ? "Saindo..." : "Sair"}
+      </button>
     </header>
   );
 }

@@ -10,6 +10,7 @@ import "./sign-up-form.css"
 import { supabase } from "@/lib/supabase";
 import imagemMinistry from "../../components/ui/IMG_6960-removebg-preview.png"
 import { useRouter } from "next/navigation";
+import Spinner from "./spinner";
 
 type FormData = {
     nome: string;
@@ -21,6 +22,7 @@ export default function SignUpHookForm() {
     const router = useRouter();
     const [cadastroError, setCadastroError] = useState<string | null>(null);
     const [cadastroSucesso, setCadastroSucesso] = useState(false);
+    const [cadastrando, setCadastrando] = useState(false);
 
     const {register, handleSubmit, formState: {errors}} = useForm<SignUpFormSchema>({resolver: zodResolver(signUpFormSchema),
 
@@ -29,6 +31,7 @@ export default function SignUpHookForm() {
 async function onSubmit(data: SignUpFormSchema) {
   setCadastroError(null);
   setCadastroSucesso(false);
+  setCadastrando(true);
 
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email: data.email,
@@ -38,16 +41,18 @@ async function onSubmit(data: SignUpFormSchema) {
   if (authError) {
     console.error(authError);
     setCadastroError("Erro ao cadastrar. Tente novamente.");
+    setCadastrando(false);
     return;
   }
 
   // detecta email já cadastrado (identities vazio = usuário já existe)
   if (authData.user && authData.user.identities && authData.user.identities.length === 0) {
     setCadastroError("Esse email já está cadastrado. Tente fazer login.");
+    setCadastrando(false);
     return;
   }
 
-    const mudarTelaAposTempo = () => {
+   const mudarTelaAposTempo = () => {
     setTimeout(() => {
       router.push('/login');
     }, 3000); // espera 2 segundos e vai pra tela de login
@@ -66,10 +71,13 @@ async function onSubmit(data: SignUpFormSchema) {
   if (insertError) {
     console.error(insertError);
     setCadastroError("Erro ao salvar seus dados. Tente novamente.");
+    setCadastrando(false);
     return;
   }
 
   setCadastroSucesso(true);
+  // não desliga o "cadastrando" aqui de propósito — o spinner continua
+  // visível até o redirecionamento automático pra /login acontecer
 
   mudarTelaAposTempo()
 }
@@ -91,7 +99,7 @@ async function onSubmit(data: SignUpFormSchema) {
         
             <div>
                 <h2>Nome</h2>
-            <Input placeholder="Nome" {...register("name")}/>
+            <Input placeholder="Nome" {...register("name")} disabled={cadastrando}/>
         
                     {errors?.name && (
                 <div className="text-red-500 text-xs">
@@ -103,7 +111,7 @@ async function onSubmit(data: SignUpFormSchema) {
         
             <div>
                 <h2>Email</h2>
-            <Input placeholder="you@example.com" type="email" {...register("email")}/>
+            <Input placeholder="you@example.com" type="email" {...register("email")} disabled={cadastrando}/>
         
                     {errors?.email && (
                 <div className="text-red-500 text-xs">
@@ -115,7 +123,7 @@ async function onSubmit(data: SignUpFormSchema) {
 
             <div>
                 <h2>Senha</h2>
-            <Input placeholder="••••••••" type="password" {...register("password")} />
+            <Input placeholder="••••••••" type="password" {...register("password")} disabled={cadastrando} />
         
                     {errors?.password && (
                 <div className="text-red-500 text-xs">
@@ -126,7 +134,7 @@ async function onSubmit(data: SignUpFormSchema) {
             </div>
         
             <div>
-            <Input placeholder="Confirmar Senha" type="password" {...register("confirmPassword")}/>
+            <Input placeholder="Confirmar Senha" type="password" {...register("confirmPassword")} disabled={cadastrando}/>
         
                     {errors?.confirmPassword && (
                 <div className="text-red-500 text-xs">
@@ -144,7 +152,9 @@ async function onSubmit(data: SignUpFormSchema) {
                     <div className="text-green-600 text-xs">Cadastro realizado com sucesso! Você já pode fazer login.</div>
                 )}
         
-                <Button>cadastrar</Button>
+                <Button disabled={cadastrando}>
+                  {cadastrando ? (<><Spinner /> Cadastrando...</>) : "cadastrar"}
+                </Button>
         <div className="final">
                 <span>ou</span>
                 <h3>Já tem uma conta?<a href="/login">Iniciar sessão </a></h3>

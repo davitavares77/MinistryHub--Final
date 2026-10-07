@@ -89,7 +89,7 @@ export default function Inicio() {
       <h1 className={styles.tituloPagina}>Minhas escalas</h1>
 
       {cards.length === 0 ? (
-        <p>Você não tem escalas futuras no momento.</p>
+        <p className={styles.textoVazio}>Você não tem escalas futuras no momento.</p>
       ) : (
         <div className={styles.grid}>
           {cards.map((card) => (

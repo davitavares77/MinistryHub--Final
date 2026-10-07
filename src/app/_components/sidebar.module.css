@@ -1,6 +1,6 @@
 .header {
   position: relative;
-  width: 200px;
+  width: 150px;
   min-height: 100vh;
   color: var(--cor-primaria);
   background-color: #ffffff;
@@ -12,11 +12,13 @@
 }
 
 .logoministry {
-  height: 110px;
-  width: 200px;
+  height: auto;
+  width: 100%;
+  max-width: 130px;
   display: flex;
   cursor: pointer;
-  padding: 0 20px;
+  padding: 0 10px;
+  margin-bottom: 10px;
 }
 
 .secao {
@@ -53,4 +55,35 @@
   border-left: 3px solid var(--cor-primaria) !important;
   font-weight: 700 !important;
   opacity: 1 !important;
+}
+
+.botaoSair {
+  margin-top: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.botaoSair:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.botaoSair:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.logoministry img {
+  width: 100%;
+  height: auto;
 }
